@@ -1,12 +1,12 @@
 import { Router } from "express";
 import {
   createSchedulesController,
-  listenSchendulesRealStateController,
+  listenSchedulesRealStateController,
 } from "../controllers/schedules.controller";
 
 const schedulesRouter: Router = Router();
 
 schedulesRouter.post("", createSchedulesController);
-schedulesRouter.get("/realEstate/:id", listenSchendulesRealStateController);
+schedulesRouter.get("/realEstate/:id", listenSchedulesRealStateController);
 
 export default schedulesRouter;

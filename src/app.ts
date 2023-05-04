@@ -6,6 +6,7 @@ import loginRouter from "./routes/login.router";
 import categoriesRouter from "./routes/categories.router";
 import schedulesRouter from "./routes/schedules.router";
 import realStateRouter from "./routes/realState.router";
+import { handleError } from "./errors";
 
 const app = express();
 app.use(express.json());
@@ -15,5 +16,7 @@ app.use("/login", loginRouter);
 app.use("/categories", categoriesRouter);
 app.use("/realEstate", realStateRouter);
 app.use("/schedules", schedulesRouter);
+
+app.use(handleError);
 
 export default app;

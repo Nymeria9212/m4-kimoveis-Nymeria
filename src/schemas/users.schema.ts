@@ -4,11 +4,11 @@ const userSchema = z.object({
   id: z.number(),
   name: z.string().max(45),
   email: z.string().email().max(45),
-  password: z.string(),
-  admin: z.boolean().nullish(),
+  password: z.string().max(120),
+  admin: z.boolean().default(false),
   createdAt: z.date(),
   updatedAt: z.date(),
-  deletedAt: z.date().nullish(),
+  deletedAt: z.date(),
 });
 
 const userSchemaRequest = userSchema.omit({
