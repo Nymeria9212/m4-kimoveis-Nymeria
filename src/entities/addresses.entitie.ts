@@ -9,7 +9,7 @@ class Address {
   street: string;
 
   @Column({ type: "varchar", length: 8 })
-  zipcode: string;
+  zipCode: string;
 
   @Column({ type: "varchar", length: 7 })
   number: string;

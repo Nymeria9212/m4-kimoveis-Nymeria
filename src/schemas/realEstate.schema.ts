@@ -1,7 +1,7 @@
-import { z } from "zod";
+import { boolean, z } from "zod";
 
 const realStateSchema = z.object({
-  sold: z.boolean(),
+  sold: z.optional(boolean()).default(false),
   value: z.number().multipleOf(0.01),
   size: z.number().int(),
   createdAt: z.date(),
@@ -10,4 +10,9 @@ const realStateSchema = z.object({
   categoryId: z.number().int(),
 });
 
-export { realStateSchema };
+const realEstateSchemaRequest = realStateSchema.omit({
+  createdAt: true,
+  updatedAt: true,
+});
+
+export { realStateSchema, realEstateSchemaRequest };

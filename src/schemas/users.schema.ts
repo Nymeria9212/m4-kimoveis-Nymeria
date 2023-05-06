@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { boolean, z } from "zod";
 
 const userSchema = z.object({
   id: z.number(),
@@ -6,9 +6,9 @@ const userSchema = z.object({
   email: z.string().email().max(45),
   password: z.string().max(120),
   admin: z.boolean().default(false),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-  deletedAt: z.date(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  deletedAt: z.string().nullable(),
 });
 
 const userSchemaRequest = userSchema.omit({
@@ -19,4 +19,18 @@ const userSchemaRequest = userSchema.omit({
 });
 const userSchemaResponse = userSchema.omit({ password: true });
 
-export { userSchema, userSchemaRequest, userSchemaResponse };
+const userLoginSchema = z.object({
+  password: z.string().max(120),
+  email: z.string().email().max(45),
+});
+const usersSchemaResponse = z.array(userSchemaResponse);
+
+const userSchemaPatch = userSchemaRequest.partial().omit({ admin: true });
+export {
+  userSchema,
+  userSchemaRequest,
+  userSchemaResponse,
+  userLoginSchema,
+  usersSchemaResponse,
+  userSchemaPatch,
+};
