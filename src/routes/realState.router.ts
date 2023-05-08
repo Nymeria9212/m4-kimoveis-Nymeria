@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   createRealStateController,
   listenRealStateController,
-} from "../controllers/realStgate.controller";
+} from "../controllers/realEstate.controller";
 import validateBody from "../middlewares/validateBody.middleware";
 import {
   realEstateSchemaRequest,
@@ -10,12 +10,16 @@ import {
 } from "../schemas/realEstate.schema";
 import validateTokenMiddleware from "../middlewares/validateToken.middeware";
 import ensureAdminToken from "../middlewares/validateAdmin.middleware";
+import ensureAddressMiddleware from "../middlewares/ensureAddress.middleare";
 
 const realStateRouter: Router = Router();
 
 realStateRouter.post(
   "",
   validateBody(realEstateSchemaRequest),
+  validateTokenMiddleware,
+  ensureAdminToken,
+  ensureAddressMiddleware,
   createRealStateController
 );
 realStateRouter.get("", listenRealStateController);

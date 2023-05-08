@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { addressSchema } from "../schemas/address.schema";
-type TAddress = z.infer<typeof addressSchema>;
+import { AddressSchema, AddressSchemaRequest } from "../schemas/address.schema";
+type TAddress = z.infer<typeof AddressSchema>;
+type AddressReq = z.infer<typeof AddressSchemaRequest>;
 
-export { TAddress };
+export { TAddress, AddressReq };
