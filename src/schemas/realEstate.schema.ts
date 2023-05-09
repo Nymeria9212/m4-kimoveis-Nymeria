@@ -6,7 +6,7 @@ const realStateSchema = z.object({
   id: z.number(),
   sold: z.boolean().default(false),
   value: z.number().or(z.string()).default(0),
-  size: z.number().int(),
+  size: z.number().int().positive(),
   createdAt: z.date(),
   updatedAt: z.date(),
   address: AddressSchema,
@@ -21,5 +21,5 @@ const realEstateSchemaRequest = z.object({
   categoryId: z.number().int(),
 });
 
-const listRealEstatesSchema = z.array(realEstateSchemaRequest);
+const listRealEstatesSchema = z.array(realStateSchema);
 export { realStateSchema, realEstateSchemaRequest, listRealEstatesSchema };
