@@ -10,7 +10,6 @@ import { schedulesSchemaRequest } from "../schemas/schendules.schema";
 import verifyDateScheduleImmobileMiddleare from "../middlewares/verifyDateScheduleImmobile.middleware";
 import verifyDateScheduleUserMiddleware from "../middlewares/verifydateScheduleUser.middleware";
 
-console.log("subindo repositório");
 const schedulesRouter: Router = Router();
 
 schedulesRouter.post(
