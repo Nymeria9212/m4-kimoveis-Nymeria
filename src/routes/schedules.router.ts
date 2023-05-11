@@ -16,7 +16,6 @@ schedulesRouter.post(
   "",
   validateTokenMiddleware,
   validateBody(schedulesSchemaRequest),
-
   createSchedulesController
 );
 schedulesRouter.get(
