@@ -2,6 +2,8 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -31,9 +33,11 @@ class RealEstate {
   updatedAt: string;
 
   @OneToOne(() => Address)
+  @JoinColumn()
   address: Address;
 
-  @OneToOne(() => Category)
+  @ManyToOne(() => Category, (category) => category.realEstate)
+  @JoinColumn()
   category: Category;
 }
 

@@ -6,7 +6,7 @@ import readRealEstateService from "../services/realEstate/readRealEstate.service
 const createRealStateController = async (
   req: Request,
   res: Response
-): Promise<Response<TRealEstate>> => {
+): Promise<Response<TRealEstate[]>> => {
   const dataBody = req.body;
   const newRealEstate = await createRealEstateService(dataBody);
 
@@ -17,9 +17,9 @@ const listenRealStateController = async (
   req: Request,
   res: Response
 ): Promise<Response<TRealEstate[]>> => {
-  const listRealEstate = await readRealEstateService();
+  const listRealEstate: TRealEstate[] = await readRealEstateService();
 
-  return res.status(200).json("listRealEstate");
+  return res.status(200).json(listRealEstate);
 };
 
 export { createRealStateController, listenRealStateController };

@@ -26,10 +26,9 @@ const createRealEstateService = async (dataBody: TRealEstateRequest) => {
   if (!categories) {
     throw new AppError("Category not found", 404);
   }
-  console.log("chegou category");
+
   const addressCreate: Address = addressRepository.create(address);
   await addressRepository.save(addressCreate);
-  console.log("chegou address");
 
   const realEstate: RealEstate = realEstateRepository.create({
     ...dataEstate,
@@ -37,7 +36,6 @@ const createRealEstateService = async (dataBody: TRealEstateRequest) => {
     category: categories,
   });
   await realEstateRepository.save(realEstate);
-  console.log("chegou real");
 
   const returnRealEstate = realStateSchema.parse(realEstate);
 

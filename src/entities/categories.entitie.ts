@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -16,6 +17,7 @@ class Category {
   name: string;
 
   @OneToMany(() => RealEstate, (realEstate) => realEstate.category)
+  @JoinColumn()
   realEstate: RealEstate[];
 }
 

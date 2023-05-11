@@ -5,6 +5,7 @@ import {
 } from "../interfaces/categories.type";
 import createCategoryService from "../services/categories/createCategories.services";
 import listCategoriesService from "../services/categories/listCategories.services";
+import cateroryIdRealEstate from "../services/categories/categoryIdRealEstate.services";
 
 const createCategoryController = async (req: Request, res: Response) => {
   const dataBody: TCategorieRequest = req.body;
@@ -21,7 +22,16 @@ const listenCategoriesController = async (
 
   return res.status(200).json(listCategories);
 };
-const readCategoryIdController = async (req: Request, res: Response) => {};
+const readCategoryIdController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const id: number = parseInt(req.params.id);
+
+  const listRealEstateForCategories = await cateroryIdRealEstate(id);
+
+  return res.status(200).json(listRealEstateForCategories);
+};
 
 export {
   createCategoryController,
